@@ -18,7 +18,7 @@ Business Card Block is a Gutenberg business card block for WordPress that helps 
 
 The block provides flexible layout controls, multiple card themes, and styling options, allowing you to build responsive profile cards and contact sections.
 
-[**Business Card**](https://bplugins.com/products/business-card-block/) | [**Documentation**](https://bplugins.com/docs/business-card-block/) | [**Pricing**](https://bplugins.com/products/business-card-block/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/demo/business-card-all-demos/)
+[**Business Card**](https://bplugins.com/products/business-card-block/) | [**Documentation**](https://bplugins.com/docs/business-card-block/) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/demo/business-card-all-demos/)
 
 === Key Features – Free Version ===
 - **Multiple Card Themes**: Choose from Default, Theme 1, Theme 2, and Theme 3 to display business cards in different layouts suitable for personal, team, or company profiles.
@@ -189,7 +189,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Improve security
 
 = 1.0.5 =
-* Reduce assets load
+* Reduce asset load
 
 = 1.0.4 =
 * Add translate feature
