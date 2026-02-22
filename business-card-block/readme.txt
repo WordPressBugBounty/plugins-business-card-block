@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, business, card, address card, Gutenberg block
 Requires at least: 6.5
 Tested up to: 6.9
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,12 +13,11 @@ Business Card Block allows you to create and display professional business cards
 
 == Description ==
 
-
 Business Card Block is a Gutenberg business card block for WordPress that helps you create and display professional contact cards inside the block editor. It is useful for showcasing personal profiles, team members, freelancers, company contacts, and author information on pages or posts.
 
-The block provides flexible layout controls, multiple card themes, and styling options, allowing you to build responsive profile cards and contact sections.
+The block provides flexible layout controls, multiple card themes, and styling options, allowing you to build responsive profile cards and contact sections without using shortcodes or custom CSS.
 
-[**Business Card**](https://bplugins.com/products/business-card-block/) | [**Documentation**](https://bplugins.com/docs/business-card-block/) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/demo/business-card-all-demos/)
+[**Business Card**](https://bplugins.com/products/business-card-block/) | [**Documentation**](https://bplugins.com/docs/business-card-block/) | [**Pricing**](https://bplugins.com/products/business-card-block/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/demo/business-card-all-demos/)
 
 === Key Features – Free Version ===
 - **Multiple Card Themes**: Choose from Default, Theme 1, Theme 2, and Theme 3 to display business cards in different layouts suitable for personal, team, or company profiles.
@@ -91,7 +90,7 @@ Getting started with Business Card Block is quick and easy!
 1. Download the **Business Card** plugin (*.zip file*)
 2. In your admin area, go to the Plugins menu and click on **Add New**
 3. Click on **Upload Plugin** and choose the **`business-card.zip`** file and click on **Install Now**
-4. Activate the plugin and enjoy!
+4. Activate the plugin and Enjoy!
 
 = Manually: =
 1. Download and upload the **Business Card** plugin to the **`/wp-content/plugins/`** directory
@@ -143,6 +142,10 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+
+= 2.0.3 - 22 Feb 2026 =
+* Update Admin Dashboard
+
 = 2.0.2 - 13 Jan 26 =
 * fix header margin issue
 
@@ -189,7 +192,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Improve security
 
 = 1.0.5 =
-* Reduce asset load
+* Reduce assets load
 
 = 1.0.4 =
 * Add translate feature

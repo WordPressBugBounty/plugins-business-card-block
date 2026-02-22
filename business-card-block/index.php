@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Business Card Block
  * Description: Show your business card in web.
- * Version: 2.0.2
+ * Version: 2.0.3
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -18,7 +18,7 @@ if ( function_exists( 'bcb_fs' ) ) {
     bcb_fs()->set_basename( false, __FILE__ );
 } else {
     // Constant
-    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.2' ) );
+    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.3' ) );
     define( 'BCB_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BCB_HAS_PRO', file_exists( dirname( __FILE__ ) . '/vendor/freemius/start.php' ) );
@@ -56,39 +56,6 @@ if ( function_exists( 'bcb_fs' ) ) {
         bcb_fs();
         do_action( 'bcb_fs_loaded' );
     }
-    function bcbIsPremium() {
-        return ( BCB_HAS_PRO ? bcb_fs()->can_use_premium_code() : false );
-    }
-
-    if ( !class_exists( 'BCBPlugin' ) ) {
-        class BCBPlugin {
-            function __construct() {
-                add_action( 'enqueue_block_assets', [$this, 'enqueueBlockAssets'] );
-                add_action( 'init', [$this, 'onInit'] );
-                add_action( 'enqueue_block_editor_assets', [$this, 'enqueueBlockEditorAssets'] );
-            }
-
-            function enqueueBlockAssets() {
-                wp_register_style(
-                    'fontAwesome',
-                    BCB_DIR_URL . 'public/css/font-awesome.min.css',
-                    [],
-                    '6.4.2'
-                );
-            }
-
-            function onInit() {
-                register_block_type( __DIR__ . '/build' );
-            }
-
-            function enqueueBlockEditorAssets() {
-                wp_add_inline_script( 'business-card-editor-script', 'const bcbIsPremium = ' . wp_json_encode( bcbIsPremium() ) . ';', 'before' );
-            }
-
-        }
-
-        new BCBPlugin();
-    }
-    require_once BCB_DIR_PATH . 'includes/admin/CPT.php';
-    require_once BCB_DIR_PATH . 'includes/admin/Menu.php';
+    require_once BCB_DIR_PATH . 'includes/utils/functions.php';
+    require_once BCB_DIR_PATH . 'includes/plugin.php';
 }
