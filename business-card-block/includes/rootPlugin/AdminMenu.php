@@ -7,14 +7,12 @@ class AdminMenu  {
         add_action('admin_menu', [$this, 'adminMenu']);
     }
 
-
-
     public function adminMenu(){
 
                 add_submenu_page(
                     "edit.php?post_type=bcb",
-                    __('Help & Demo - Business Card', 'business-card'),
-                    __('Help & Demo', 'business-card'),
+                    __('Help & Demos - Business Card', 'business-card'),
+                    __('Help & Demos', 'business-card'),
                     'manage_options',
                     'bcb-dashboard',
                     [$this, 'renderHelpAndDemoPage'],
@@ -23,14 +21,13 @@ class AdminMenu  {
             }
 
 
-
             public function renderHelpAndDemoPage(){
             ?>
-<div id='bcbHelpAndDemo' data-info='<?php echo esc_attr(wp_json_encode([
+<div id='bcbHelpAndDemos' data-info='<?php echo esc_attr(wp_json_encode([
                     'version' => BCB_PLUGIN_VERSION,
                     'isPremium' => bcbIsPremium(),
                     'hasPro' => BCB_HAS_PRO,
-                    'licenseActiveNonce' => wp_create_nonce( 'bpl_activation_nonce' )
+                    'licenseActiveNonce' => wp_create_nonce( 'bPlLicenseActivation' )
                 ])); ?>'></div>
 <?php
         }

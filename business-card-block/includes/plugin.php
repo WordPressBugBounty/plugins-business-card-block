@@ -15,19 +15,15 @@ if( !class_exists( 'BCBPlugin' ) ){
 			require_once BCB_DIR_PATH . 'includes/rootPlugin/AdminMenu.php';
 			require_once BCB_DIR_PATH . 'includes/rootPlugin/ShortCode.php';
 			require_once BCB_DIR_PATH . 'includes/rootPlugin/CustomColumn.php';
-			require_once BCB_DIR_PATH . 'includes/rootPlugin/BlockCategory.php';
 			if( BCB_HAS_PRO ){
 		require_once BCB_DIR_PATH . 'includes/rootPlugin/LicenseActivation.php';
 	}
-
 
 			new BCB\Init();
 			new BCB\Enqueue();
 			new BCB\AdminMenu();
 			new BCB\ShortCode();
-			new BCB\CustomColumn();
-			new BCB\BlockCategory();
-			
+			new BCB\CustomColumn();			
 
 		}
 		

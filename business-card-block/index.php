@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Business Card Block
  * Description: Show your business card in web.
- * Version: 2.0.3
+ * Version: 2.0.4
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -18,7 +18,7 @@ if ( function_exists( 'bcb_fs' ) ) {
     bcb_fs()->set_basename( false, __FILE__ );
 } else {
     // Constant
-    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.3' ) );
+    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.0.4' ) );
     define( 'BCB_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BCB_HAS_PRO', file_exists( dirname( __FILE__ ) . '/vendor/freemius/start.php' ) );
