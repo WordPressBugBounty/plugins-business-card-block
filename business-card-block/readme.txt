@@ -56,13 +56,8 @@ Getting started with Business Card Block is quick and easy!
 5. Publish or update your page.
 
 === Feedback ===
-- Did you like this plugin? Dislike it? Do you have a feature request? [Please share your feedback with us](mailto:support@bplugins.com 'Send feedback')
-
-
-### Check out the Parent Plugin of this plugin-
-
-[**B Blocks**](https://bblockswp.com) – A blocks collection and page building tool for Gutenberg.
-
+Have a suggestion or question?  
+Email us: support@bplugins.com
 
 ### Check out our other WordPress Plugins-
 
@@ -77,6 +72,8 @@ Getting started with Business Card Block is quick and easy!
 [**3D Viewer**](https://bplugins.com/products/3d-viewer/) – Embed 3D models and 3D products with interaction.
 
 [**Advanced Post Block**](https://bplugins.com/products/advanced-post-block/) – Show posts and custom posts in different layouts.
+
+[**bBlocks**](https://bblockswp.com) – A blocks collection and page building tool for Gutenberg.
 
 
 == Installation ==
@@ -180,34 +177,3 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * Initial Release.
 
 
-== Upgrade Notice ==
-
-= 2.0.2 - 13 Jan 26 =
-* fix header margin issue
-
-= 2.0.1 - 22 Dec 25 =
-* Bug fix: corrected broken links.
-
-= 2.0.0 – 14 Dec 25 =  
-* Added six new themes for improved design and customization.
-
-= 1.0.6 - 18 Feb 25 =
-* Improve security
-
-= 1.0.5 =
-* Reduce assets load
-
-= 1.0.4 =
-* Add translate feature
-
-= 1.0.3 =
-* Fix Width
-
-= 1.0.2 =
-* Fix HTML Render
-
-= 1.0.1 =
-* Fix CSS issue
-
-= 1.0.0 =
-* Initial Release.
