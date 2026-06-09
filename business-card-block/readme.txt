@@ -1,7 +1,7 @@
 === Business Card Block – Display Business or Personal Info in Card Format ===
-Contributors: bplugins, abuhayat, charlescormier, ruhulamin2026, freemius
+Contributors: bplugins, abuhayat, charlescormier, asadsuzan, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
-Tags: block, business, card, address card, Gutenberg block
+Tags: business card, vcard, profile card, team, block
 Requires at least: 6.5
 Tested up to: 6.9
 Stable tag: 2.0.4
@@ -13,9 +13,16 @@ Business Card Block allows you to create and display professional business cards
 
 == Description ==
 
-Business Card Block is a Gutenberg business card block for WordPress that helps you create and display professional contact cards inside the block editor. It is useful for showcasing personal profiles, team members, freelancers, company contacts, and author information on pages or posts.
+Elevate your WordPress website with the **Business Card Block**, the ultimate Gutenberg solution for crafting stunning, professional contact cards and user profiles directly within the block editor. Skip the complicated shortcodes and custom CSS—design responsive, eye-catching profile cards in seconds!
 
-The block provides flexible layout controls, multiple card themes, and styling options, allowing you to build responsive profile cards and contact sections without using shortcodes or custom CSS.
+Whether you need to display a digital vCard, build a team member directory, showcase freelancer portfolios, or highlight author information, this plugin provides all the flexible layout controls and styling options you need to match your brand perfectly.
+
+= Perfect For: =
+* **Digital Business Cards & vCards:** Let visitors download your contact info instantly with dedicated buttons.
+* **Team & Staff Directories:** Introduce your company's employees with professional, uniform profile cards.
+* **Author Boxes & Bios:** Highlight post authors with elegant contact sections.
+* **Freelancer Profiles:** Showcase your skills, job title, and social links to attract clients.
+* **Company Contact Info:** Display dedicated support or sales team details cleanly on contact pages.
 
 [**Business Card**](https://bplugins.com/products/business-card-block/) | [**Documentation**](https://bplugins.com/docs/business-card-block/) | [**Pricing**](https://bplugins.com/products/business-card-block/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/demo/business-card-all-demos/)
 
