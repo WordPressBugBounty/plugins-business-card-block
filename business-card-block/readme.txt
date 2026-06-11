@@ -1,10 +1,10 @@
 === Business Card Block – Display Business or Personal Info in Card Format ===
 Contributors: bplugins, abuhayat, charlescormier, asadsuzan, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
-Tags: business card, vcard, profile card, team, block
+Tags: business card, vcard, profile card, team, gutenberg block
 Requires at least: 6.5
-Tested up to: 6.9
-Stable tag: 2.0.4
+Tested up to: 7.0
+Stable tag: 2.0.5
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -37,6 +37,11 @@ Whether you need to display a digital vCard, build a team member directory, show
 
 - **Styling Options**: Customize the business card appearance using solid colors, gradients, or background images, adjust padding for better spacing and readability, add basic borders to define card boundaries, control name, title, and contact text colors, customize contact and social icon colors, and display basic separators between card sections depending on the selected theme.
 
+- **[NEW] Animation System**: A complete, GPU-accelerated animation engine featuring viewport-aware triggering, 5 modern animation types (Reveal, Slide, Flip, Polaroid, Zoom), and granular controls for duration, delay, staggering, and easing.
+
+- **[NEW] Branding & Identity System**: Flexible layouts (Overlap and Stack) for avatars and logos. Includes custom masking shapes, rich micro-interactions (shadows and hover effects), and a monochrome mode for aesthetic consistency.
+
+
 === Business Card Block – Unlock Advanced Features ===
 
 Business Card Block Pro adds features for advanced layout and design control.
@@ -49,6 +54,10 @@ Business Card Block Pro adds features for advanced layout and design control.
 - **Contact and Social Icon Styling**: Adjust icon sizes and apply advanced color and hover effects to contact and social icons for improved visibility and interaction.
 
 - **Advanced Download Button Controls**: Control button position, typography, colors, hover styles, borders, radius, and padding to better match your website branding and layout.
+
+
+
+
 
 === How to Use Business Card Block – Step-by-Step Guide ===
 
@@ -146,6 +155,12 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+
+= 2.0.5 - 11 Jun 2026 =
+* Added High-Performance Animation System with viewport-aware triggering, 5 animation types, and granular controls.
+* Added Advanced Branding & Identity System with Overlap/Stack layouts, custom masking, hover effects, and Monochrome mode.
+* Improved Responsive Architecture 2.0 with intelligent stacking, identity auto-scaling, and contact word-breaking.
+* Enhanced Performance & Stability with compositor-thread optimization and CSS variable engine.
 
 = 2.0.4 - 07 Mar 2026 =
 * update vCard

@@ -1,8 +1,8 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "business/card",
   "title": "Business Card",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Show your business card in web.",
   "category": "widgets",
   "keywords": [
@@ -12,6 +12,19 @@
   ],
   "textdomain": "business-card",
   "attributes": {
+    "animations": {
+      "type": "object",
+      "default": {
+        "duration": 0.8,
+        "delay": 0.15,
+        "stagger": 0.08,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "intensity": 1,
+        "enable": true,
+        "replay": false,
+        "type": "reveal"
+      }
+    },
     "align": {
       "type": "string",
       "default": ""
@@ -292,6 +305,45 @@
           }
         }
       }
+    },
+    "avatar": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "id": 0,
+        "mask": "circle",
+        "shadow": "soft",
+        "hoverEffect": "zoom",
+        "size": 80
+      }
+    },
+    "logo": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "id": 0,
+        "monochrome": false,
+        "mask": "none",
+        "shadow": "none",
+        "hoverEffect": "none",
+        "size": 40
+      }
+    },
+    "blockVersion": {
+      "type": "string",
+      "default": "2.0.0"
+    },
+    "showAvatar": {
+      "type": "boolean",
+      "default": false
+    },
+    "showLogo": {
+      "type": "boolean",
+      "default": false
+    },
+    "brandingLayout": {
+      "type": "string",
+      "default": "overlap"
     }
   },
   "supports": {
