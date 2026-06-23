@@ -4,13 +4,62 @@ namespace BCB;
 
 class Init {
     function __construct() {
-        add_action( 'init', [ $this, 'onInit' ] );    
+        add_action( 'init', [ $this, 'onInit' ] );
+        add_filter( 'block_categories_all', [ $this, 'registerBlockCategory' ] );
+    }
+
+    /**
+     * Register a dedicated "Business Cards" category so every block this plugin
+     * ships groups together in the inserter. Prepended so it sits at the top.
+     */
+    function registerBlockCategory( $categories ) {
+        return array_merge(
+            [
+                [
+                    'slug'  => 'business-cards',
+                    'title' => __( 'Business Cards', 'business-card' ),
+                    'icon'  => null,
+                ],
+            ],
+            $categories
+        );
     }
 
 
 	function onInit(){
-	register_block_type( BCB_DIR_PATH . '/build' );
-		
+	$disabled = get_option( 'bcbDisabledBlocks', [] );
+	if ( ! is_array( $disabled ) ) {
+		$disabled = [];
+	}
+	register_block_type( BCB_DIR_PATH . '/build/blocks/card' );
+	if ( function_exists( 'bcbIsPremium' ) && bcbIsPremium() ) {
+		$pro_blocks = [
+			'team'              => 'business/team',
+			'testimonial'       => 'business/testimonial',
+			'realestate-card'   => 'business/realestate-card',
+			'doctor-card'       => 'business/doctor-card',
+			'restaurant-card'   => 'business/restaurant-card',
+			'lawyer-card'       => 'business/lawyer-card',
+			'photographer-card' => 'business/photographer-card',
+			'fitness-card'      => 'business/fitness-card',
+			'salon-card'        => 'business/salon-card',
+			'construction-card' => 'business/construction-card',
+			'saas-founder-card' => 'business/saas-founder-card',
+			'tutor-card'        => 'business/tutor-card',
+			'automotive-card'   => 'business/automotive-card',
+			'barber-card'       => 'business/barber-card',
+			'architect-card'    => 'business/architect-card',
+			'vet-card'          => 'business/vet-card',
+		];
+
+		foreach ( $pro_blocks as $dir => $block_name ) {
+			if ( in_array( $block_name, $disabled, true ) ) {
+				continue;
+			}
+			register_block_type( BCB_DIR_PATH . '/build/blocks/' . $dir );
+		}
+	}
+
 
 	$menuIcon = "<svg fill='#ffffff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
 			<path d='M501.333,98.667H10.667C4.777,98.667,0,103.442,0,109.333v293.333c0,5.891,4.777,10.667,10.667,10.667h490.667 c5.89,0,10.667-4.775,10.667-10.667V109.333C512,103.442,507.224,98.667,501.333,98.667z M490.667,392H21.333V120h469.333V392z' />
