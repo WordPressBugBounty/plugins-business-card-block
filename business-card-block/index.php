@@ -3,12 +3,12 @@
 /**
  * Plugin Name: Business Card Block
  * Description: Show your business card in web.
- * Version: 2.1.0
+ * Version: 2.1.1
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain: business-card
+ * Text Domain: business-card-block
  */
 // ABS PATH
 if ( !defined( 'ABSPATH' ) ) {
@@ -18,7 +18,7 @@ if ( function_exists( 'bcb_fs' ) ) {
     bcb_fs()->set_basename( false, __FILE__ );
 } else {
     // Constant
-    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.1.0' ) );
+    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.1.1' ) );
     define( 'BCB_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BCB_HAS_PRO', file_exists( dirname( __FILE__ ) . '/vendor/freemius/start.php' ) );

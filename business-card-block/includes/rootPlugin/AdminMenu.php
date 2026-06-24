@@ -19,7 +19,7 @@ class AdminMenu  {
             wp_send_json_error('Invalid Request');
         }
 
-        $data = isset($_POST['data']) ? json_decode(wp_unslash($_POST['data']), true) : null;
+        $data = isset($_POST['data']) ? json_decode(sanitize_text_field(wp_unslash($_POST['data'])), true) : null;
 
         if (is_array($data)) {
             $data = array_values(array_map('sanitize_text_field', $data));
@@ -34,8 +34,8 @@ class AdminMenu  {
 
                 add_submenu_page(
                     "edit.php?post_type=bcb",
-                    __('Help & Demos - Business Card', 'business-card'),
-                    __('Help & Demos', 'business-card'),
+                    __('Help & Demos - Business Card', 'business-card-block'),
+                    __('Help & Demos', 'business-card-block'),
                     'manage_options',
                     'bcb-dashboard',
                     [$this, 'renderHelpAndDemoPage'],

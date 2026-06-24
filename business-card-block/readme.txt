@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: business card, vcard, profile card, team, gutenberg block
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -178,10 +178,17 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog ==
 
+= 2.1.1 - 24 Jun 2026 =
+* Global Bug Fix: Added strict max character constraints (50-255 characters) to all inputs across all 15 blocks to prevent layout-breaking text.
+* UI Fix: Adjusted the rendering fallback logic for empty social items and empty SVGs to fix object rendering bugs.
+* Layout Fix: Enabled safe flex wrapping and word breaks across core elements to preserve geometry under edge cases.
+* Stability Fix: Updated text fields, constraints, and inputs directly on native controls.
+
 = 2.1.0 - 23 Jun 2026 =
 * Added 14 new industry-specific Pro Business Card blocks (Restaurant, Medical, Real Estate, Veterinarian, Architect, Barber, Automotive, Tutor, SaaS Founder, Contractor, Salon, Fitness, Photographer, Legal).
 * Redesigned the Admin Dashboard with a modern Welcome page and a new Blocks manager to enable/disable specific cards.
 * Grouped all plugin blocks under a dedicated "Business Cards" category in the block inserter.
+
 
 
 = 2.0.5 - 11 Jun 2026 =

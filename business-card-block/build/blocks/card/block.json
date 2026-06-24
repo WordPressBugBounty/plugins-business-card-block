@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "business/card",
   "title": "Business Card",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Show your business card in web.",
   "category": "business-cards",
   "keywords": [

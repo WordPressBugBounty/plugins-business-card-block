@@ -17,7 +17,7 @@ class Init {
             [
                 [
                     'slug'  => 'business-cards',
-                    'title' => __( 'Business Cards', 'business-card' ),
+                    'title' => __( 'Business Cards', 'business-card-block' ),
                     'icon'  => null,
                 ],
             ],
@@ -78,15 +78,15 @@ class Init {
 
 		register_post_type('bcb', [
 			'labels' => [
-				'name'          => __('Business Cards', 'business-card'),
-				'singular_name' => __('Business Card', 'business-card'),
-				'add_new'       => __('Add New', 'business-card'),
-				'add_new_item'  => __('Add New Business Card', 'business-card'),
-				'edit_item'     => __('Edit Business Card', 'business-card'),
-				'new_item'      => __('New Business Card', 'business-card'),
-				'view_item'     => __('View Business Card', 'business-card'),
-				'search_items'  => __('Search Business Cards', 'business-card'),
-				'not_found'     => __('Sorry, we couldn\'t find the Business Card you are looking for.', 'business-card'),
+				'name'          => __('Business Cards', 'business-card-block'),
+				'singular_name' => __('Business Card', 'business-card-block'),
+				'add_new'       => __('Add New', 'business-card-block'),
+				'add_new_item'  => __('Add New Business Card', 'business-card-block'),
+				'edit_item'     => __('Edit Business Card', 'business-card-block'),
+				'new_item'      => __('New Business Card', 'business-card-block'),
+				'view_item'     => __('View Business Card', 'business-card-block'),
+				'search_items'  => __('Search Business Cards', 'business-card-block'),
+				'not_found'     => __('Sorry, we couldn\'t find the Business Card you are looking for.', 'business-card-block'),
 			],
 
 			'public'              => false,
