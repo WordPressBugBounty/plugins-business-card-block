@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: business card, vcard, profile card, team, gutenberg block
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -173,64 +173,68 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 13. Gutenberg Block Settings 2
 14. Gutenberg Block Settings 3
 15. Gutenberg Block Settings 4
+16. All Blocks
+17. Short Code
 
 —
 
 == Changelog ==
 
-= 2.1.1 - 24 Jun 2026 =
-* Global Bug Fix: Added strict max character constraints (50-255 characters) to all inputs across all 15 blocks to prevent layout-breaking text.
-* UI Fix: Adjusted the rendering fallback logic for empty social items and empty SVGs to fix object rendering bugs.
-* Layout Fix: Enabled safe flex wrapping and word breaks across core elements to preserve geometry under edge cases.
-* Stability Fix: Updated text fields, constraints, and inputs directly on native controls.
+= 2.1.2 - 29 June 2026 =
+* New: Add Short Code Support For All Child Blocks 
+* Fix: enhance LicenseActivation with i18n, PHPDoc, and validation improvements
 
-= 2.1.0 - 23 Jun 2026 =
-* Added 14 new industry-specific Pro Business Card blocks (Restaurant, Medical, Real Estate, Veterinarian, Architect, Barber, Automotive, Tutor, SaaS Founder, Contractor, Salon, Fitness, Photographer, Legal).
-* Redesigned the Admin Dashboard with a modern Welcome page and a new Blocks manager to enable/disable specific cards.
-* Grouped all plugin blocks under a dedicated "Business Cards" category in the block inserter.
+= 2.1.1 - 24 June 2026 =
+* Improvement: Global Bug Fix: Added strict max character constraints (50-255 characters) to all inputs across all 15 blocks to prevent layout-breaking text.
+* Improvement: UI Fix: Adjusted the rendering fallback logic for empty social items and empty SVGs to fix object rendering bugs.
+* Improvement: Layout Fix: Enabled safe flex wrapping and word breaks across core elements to preserve geometry under edge cases.
+* Improvement: Stability Fix: Updated text fields, constraints, and inputs directly on native controls.
 
+= 2.1.0 - 23 June 2026 =
+* New: Added 14 new industry-specific Pro Business Card blocks (Restaurant, Medical, Real Estate, Veterinarian, Architect, Barber, Automotive, Tutor, SaaS Founder, Contractor, Salon, Fitness, Photographer, Legal).
+* Improvement: Redesigned the Admin Dashboard with a modern Welcome page and a new Blocks manager to enable/disable specific cards.
+* Improvement: Grouped all plugin blocks under a dedicated "Business Cards" category in the block inserter.
 
+= 2.0.5 - 11 June 2026 =
+* New: Added High-Performance Animation System with viewport-aware triggering, 5 animation types, and granular controls.
+* New: Added Advanced Branding & Identity System with Overlap/Stack layouts, custom masking, hover effects, and Monochrome mode.
+* Improvement: Improved Responsive Architecture 2.0 with intelligent stacking, identity auto-scaling, and contact word-breaking.
+* Improvement: Enhanced Performance & Stability with compositor-thread optimization and CSS variable engine.
+* Fix: Fixed Help & Demos dashboard rendering blank by loading its assets on every entry URL and including the required wp-api-fetch dependency.
 
-= 2.0.5 - 11 Jun 2026 =
-* Added High-Performance Animation System with viewport-aware triggering, 5 animation types, and granular controls.
-* Added Advanced Branding & Identity System with Overlap/Stack layouts, custom masking, hover effects, and Monochrome mode.
-* Improved Responsive Architecture 2.0 with intelligent stacking, identity auto-scaling, and contact word-breaking.
-* Enhanced Performance & Stability with compositor-thread optimization and CSS variable engine.
-* Fixed Help & Demos dashboard rendering blank by loading its assets on every entry URL and including the required wp-api-fetch dependency.
+= 2.0.4 - 2 June 2026 =
+* Improvement: update vCard
 
-= 2.0.4 - 07 Mar 2026 =
-* update vCard
+= 2.0.3 - 23 February 2026 =
+* Improvement: Update Admin Dashboard
 
-= 2.0.3 - 22 Feb 2026 =
-* Update Admin Dashboard
+= 2.0.2 - 10 February 2026 =
+* Fix: fix header margin issue
 
-= 2.0.2 - 13 Jan 26 =
-* fix header margin issue
+= 2.0.1 - 30 December 2025 =
+* Fix: Bug fix: corrected broken links.
 
-= 2.0.1 - 22 Dec 25 =
-* Bug fix: corrected broken links.
+= 2.0.0 - 17 December 2025 =
+* New: Added six new themes for improved design and customization.
 
-= 2.0.0 – 14 Dec 25 =  
-* Added six new themes for improved design and customization.
+= 1.0.6 - 14 December 2025 =
+* Improvement: Improve security
 
-= 1.0.6 - 18 Feb 25 =
-* Improve security
+= 1.0.5 - 12 February 2025 =
+* Improvement: Reduce assets load
 
-= 1.0.5 =
-* Reduce assets load
+= 1.0.4 - 10 April 2023 =
+* New: Add translate feature
 
-= 1.0.4 =
-* Add translate feature
+= 1.0.3 - 17 July 2022 =
+* Fix: Fix Width
 
-= 1.0.3 =
-* Fix Width
+= 1.0.2 - 10 May 2022 =
+* Fix: Fix HTML Render
 
-= 1.0.2 =
-* Fix HTML Render
+= 1.0.1 - 17 April 2022 =
+* Fix: Fix CSS issue
 
-= 1.0.1 =
-* Fix CSS issue
-
-= 1.0.0 =
-* Initial Release.
+= 1.0.0 - 12 April 2022 =
+* Improvement: Initial Release.
 

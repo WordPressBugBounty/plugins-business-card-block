@@ -7,6 +7,29 @@ class Enqueue {
         add_action( 'enqueue_block_assets', [$this, 'enqueueBlockAssets'] );
         add_action('enqueue_block_editor_assets', [$this, 'enqueueBlockEditorAssets']);
         add_action( 'admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
+        add_filter( 'block_editor_settings_all', [$this, 'injectEditorIframeStyles'], 10, 2 );
+    }
+
+    /**
+     * The shortcode clip + chooser render inside the block-editor canvas, which
+     * is an <iframe>. Styles enqueued on the outer document don't reach it, so
+     * push the chooser stylesheet into the iframe via the editor "styles"
+     * setting — scoped to the Business Card CPT only.
+     */
+    function injectEditorIframeStyles( $settings, $context ) {
+        if ( empty( $context->post ) || 'bcb' !== $context->post->post_type ) {
+            return $settings;
+        }
+
+        $css_path = BCB_DIR_PATH . 'build/admin-block-chooser.css';
+        if ( file_exists( $css_path ) ) {
+            $css = file_get_contents( $css_path );
+            if ( $css ) {
+                $settings['styles'][] = [ 'css' => $css ];
+            }
+        }
+
+        return $settings;
     }
 
     
@@ -18,6 +41,25 @@ class Enqueue {
     function enqueueBlockEditorAssets(){
 	    $bcb_is_premium_inline = 'window.bcbIsPremium = ' . wp_json_encode( bcbIsPremium() ) . '; var bcbIsPremium = window.bcbIsPremium;';
 	    wp_add_inline_script('business-card-editor-script', $bcb_is_premium_inline, 'before');
+
+	    // Template chooser: only on the Business Card CPT editor (post-new.php / post.php).
+	    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+	    if ($screen && 'bcb' === $screen->post_type) {
+	        $asset = require BCB_DIR_PATH . 'build/admin-block-chooser.asset.php';
+	        wp_enqueue_script(
+	            'bcb-block-chooser',
+	            BCB_DIR_URL . 'build/admin-block-chooser.js',
+	            $asset['dependencies'],
+	            $asset['version'],
+	            true
+	        );
+	        wp_enqueue_style(
+	            'bcb-block-chooser',
+	            BCB_DIR_URL . 'build/admin-block-chooser.css',
+	            [],
+	            $asset['version']
+	        );
+	    }
     }
 	
    

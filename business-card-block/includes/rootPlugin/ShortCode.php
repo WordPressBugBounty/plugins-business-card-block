@@ -6,40 +6,63 @@ class Shortcode {
         add_shortcode('bcb', [$this, 'onAddShortcode']);
     }
 
-    function onAddShortcode($atts)
-	{
-		$post_id = $atts['id'];
-		$post = get_post($post_id);
+    // function onAddShortcode($atts){
 
-		if (!$post) {
-			return '';
+	// 	$post_id = $atts['id'];
+	// 	$post = get_post($post_id);
+
+	// 	if (!$post) {
+	// 		return '';
+	// 	}
+
+	// 	if (post_password_required($post)) {
+	// 		return get_the_password_form($post);
+	// 	}
+
+	// 	switch ($post->post_status) {
+	// 		case 'publish':
+	// 			return $this->displayContent($post);
+
+	// 		case 'private':
+	// 			if (current_user_can('read_private_posts')) {
+	// 				return $this->displayContent($post);
+	// 			}
+	// 			return '';
+
+	// 		case 'draft':
+	// 		case 'pending':
+	// 		case 'future':
+	// 			if (current_user_can('edit_post', $post_id)) {
+	// 				return $this->displayContent($post);
+	// 			}
+	// 			return '';
+
+	// 		default:
+	// 			return '';
+	// 	}
+	// }
+
+	function onAddShortcode($atts){
+		if(!isset($atts['id'])){
+			return '<p>Please provide post id</p>';
 		}
 
-		if (post_password_required($post)) {
-			return get_the_password_form($post);
-		}
+		$post =  get_post($atts['id']);
 
-		switch ($post->post_status) {
-			case 'publish':
-				return $this->displayContent($post);
-
-			case 'private':
-				if (current_user_can('read_private_posts')) {
-					return $this->displayContent($post);
-				}
-				return '';
-
-			case 'draft':
-			case 'pending':
-			case 'future':
-				if (current_user_can('edit_post', $post_id)) {
-					return $this->displayContent($post);
-				}
-				return '';
-
-			default:
-				return '';
-		}
+		if($post){
+		 $blocks = parse_blocks($post->post_content);
+		 if(!empty($blocks)){
+			foreach($blocks as $block){
+				return render_block($block);
+			}
+		 }else {
+                return '<p>Error: Code Snippets Block with ID ' . esc_html($atts['id']) . ' not found.</p>';
+            }
+		}else {
+                return '<p>Error: Code Snippets Block with ID ' . esc_html($atts['id']) . ' not found.</p>';
+            }
+		
+		
 	}
 
 	function displayContent($post){

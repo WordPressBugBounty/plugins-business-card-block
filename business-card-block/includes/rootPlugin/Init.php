@@ -3,9 +3,19 @@
 namespace BCB;
 
 class Init {
+    /**
+     * Block names registered by this plugin (free + any enabled pro blocks).
+     * Populated in onInit() and reused to restrict the bcb editor to just
+     * these blocks via the allowed_block_types_all filter.
+     *
+     * @var string[]
+     */
+    private $registeredBlocks = [];
+
     function __construct() {
         add_action( 'init', [ $this, 'onInit' ] );
         add_filter( 'block_categories_all', [ $this, 'registerBlockCategory' ] );
+        add_filter( 'allowed_block_types_all', [ $this, 'restrictBcbBlocks' ], 10, 2 );
     }
 
     /**
@@ -32,6 +42,7 @@ class Init {
 		$disabled = [];
 	}
 	register_block_type( BCB_DIR_PATH . '/build/blocks/card' );
+	$this->registeredBlocks[] = 'business/card';
 	if ( function_exists( 'bcbIsPremium' ) && bcbIsPremium() ) {
 		$pro_blocks = [
 			'team'              => 'business/team',
@@ -56,7 +67,11 @@ class Init {
 			if ( in_array( $block_name, $disabled, true ) ) {
 				continue;
 			}
+			if ( ! is_dir( BCB_DIR_PATH . '/build/blocks/' . $dir ) ) {
+				continue;
+			}
 			register_block_type( BCB_DIR_PATH . '/build/blocks/' . $dir );
+			$this->registeredBlocks[] = $block_name;
 		}
 	}
 
@@ -101,13 +116,28 @@ class Init {
 			'menu_position'       => 22,
 			'menu_icon'           => 'data:image/svg+xml;base64,' . base64_encode($menuIcon),
 			'supports'            => ['title','editor'],
-			'template'            => [["business/card"]],
-			'template_lock'       => 'all',
+			// No forced template/lock: the React template chooser (admin-block-chooser)
+			// lets the user pick which Business Card block to start with on a new post.
 			'rewrite'             => false,
 		]);
 
 	}
-	
-	
+
+	/**
+	 * Restrict the bcb editor to only the Business Card blocks this plugin
+	 * registers, so the curated template chooser stays the only entry point and
+	 * users can't drop unrelated core blocks into a card post.
+	 *
+	 * @param bool|string[]            $allowed Current allow-list (or true for all).
+	 * @param \WP_Block_Editor_Context $context Editor context.
+	 * @return bool|string[]
+	 */
+	function restrictBcbBlocks( $allowed, $context ) {
+		if ( empty( $context->post ) || 'bcb' !== $context->post->post_type ) {
+			return $allowed;
+		}
+
+		return $this->registeredBlocks;
+	}
 
 }
