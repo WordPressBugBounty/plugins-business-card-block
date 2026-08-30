@@ -45,6 +45,8 @@ class Init {
 	$this->registeredBlocks[] = 'business/card';
 	if ( function_exists( 'bcbIsPremium' ) && bcbIsPremium() ) {
 		$pro_blocks = [
+			// Not built yet: the is_dir() guard below skips them, so these two are
+			// inert placeholders rather than broken registrations.
 			'team'              => 'business/team',
 			'testimonial'       => 'business/testimonial',
 			'realestate-card'   => 'business/realestate-card',

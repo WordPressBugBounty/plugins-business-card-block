@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "business/card",
   "title": "Business Card",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Show your business card in web.",
   "category": "business-cards",
   "keywords": [
@@ -210,8 +210,42 @@
         "tagline": "Building the future, one line at a time",
         "company": "Tech Crop",
         "height": "0px",
-        "isDownloadBtn": false
+        "isDownloadBtn": false,
+        "downloadLabel": "Save Contact"
       }
+    },
+    "qr": {
+      "type": "object",
+      "default": {
+        "enable": false,
+        "source": "vcard",
+        "custom": "",
+        "size": 140,
+        "dark": "#000000",
+        "light": "#ffffff",
+        "ecc": "M",
+        "caption": "",
+        "label": "Scan to connect",
+        "badge": "none",
+        "display": "standard",
+        "backPosition": "center",
+        "backX": 50,
+        "backY": 50,
+        "backHint": "",
+        "triggerPosition": "top-right"
+      }
+    },
+    "contactLinks": {
+      "type": "boolean",
+      "default": true
+    },
+    "schemaEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "schemaType": {
+      "type": "string",
+      "default": "auto"
     },
     "businessCardStyles": {
       "type": "object",

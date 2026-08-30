@@ -1,33 +1,17 @@
 <?php
+/**
+ * Server render for the Business Card block.
+ *
+ * The card itself is drawn client-side, so this emits the mount point plus the
+ * two things only the server can produce: the JSON-LD block search engines
+ * read, and the pre-computed contact links, vCard and QR image.
+ *
+ * @var array $attributes Block attributes.
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
-$id = wp_unique_id( 'bcbBusinessCard-' );
-
-extract( $attributes );
-
-
-
-$has_icon_class = false;
-
-if ( ! empty( $contacts ) && is_array( $contacts ) ) {
-
-    foreach ( $contacts as $contact ) {
-
-        if ( isset( $contact['icon']['class'] ) && ! empty( $contact['icon']['class'] ) ) {
-            $has_icon_class = true;
-            break;
-        }
-    }
-}
-
-if ( $has_icon_class ) {
-    wp_enqueue_style( 'fontAwesome' );
-}
-
-
-?>
-<div <?php echo get_block_wrapper_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> id='<?php echo esc_attr( $id ); ?>'
-    data-bcbIsPremium='<?php echo esc_attr(bcbIsPremium()); ?>'
-    data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Render::card escapes internally.
+echo \BCB\Card\Render::card( $attributes, array( 'prefix' => 'bcbBusinessCard-' ) );

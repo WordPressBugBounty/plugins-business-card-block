@@ -42,6 +42,17 @@ class Enqueue {
 	    $bcb_is_premium_inline = 'window.bcbIsPremium = ' . wp_json_encode( bcbIsPremium() ) . '; var bcbIsPremium = window.bcbIsPremium;';
 	    wp_add_inline_script('business-card-editor-script', $bcb_is_premium_inline, 'before');
 
+	    // Contact-type table (labels, link templates, default glyphs). PHP owns
+	    // the link formats; the editor only reads them, so a URL scheme is
+	    // never written down in two places.
+	    $bcb_contact_types = 'window.bcbContactTypes = ' . wp_json_encode( \BCB\Card\Contacts::js_table() ) . ';';
+	    wp_add_inline_script('business-card-editor-script', $bcb_contact_types, 'before');
+
+	    // Theme table with the Pro flag. The editor reads this rather than
+	    // keeping a second copy of which designs are premium.
+	    $bcb_themes = 'window.bcbThemes = ' . wp_json_encode( \BCB\Card\Themes::js_table() ) . ';';
+	    wp_add_inline_script('business-card-editor-script', $bcb_themes, 'before');
+
 	    // Template chooser: only on the Business Card CPT editor (post-new.php / post.php).
 	    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
 	    if ($screen && 'bcb' === $screen->post_type) {
