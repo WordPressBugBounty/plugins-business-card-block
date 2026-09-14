@@ -78,7 +78,9 @@ class Contacts {
 				'scheme'   => '{url}',
 				'passthru' => array(),
 				'copyable' => false,
-				'vcard'    => array( 'prop' => 'URL', 'params' => '' ),
+				// The resolved href, not the raw text: a bare "example.com" is not a
+				// URI, and a reader that stores it verbatim produces a dead link.
+				'vcard'    => array( 'prop' => 'URL', 'params' => '', 'value' => 'href' ),
 				'schema'   => 'url',
 			),
 			'whatsapp' => array(
@@ -125,12 +127,20 @@ class Contacts {
 				'vcard'    => array( 'prop' => 'X-SOCIALPROFILE', 'params' => 'TYPE=wechat', 'value' => 'raw' ),
 				'schema'   => null,
 			),
+			'company'  => array(
+				'label'    => __( 'Company', 'business-card-block' ),
+				'scheme'   => '',
+				'passthru' => array(),
+				'copyable' => false,
+				'vcard'    => array( 'prop' => 'ORG', 'params' => '' ),
+				'schema'   => 'worksFor',
+			),
 			'others'   => array(
 				'label'    => __( 'Others', 'business-card-block' ),
 				'scheme'   => '{url}',
 				'passthru' => array(),
 				'copyable' => false,
-				'vcard'    => null,
+				'vcard'    => array( 'prop' => 'NOTE', 'params' => '', 'value' => 'text' ),
 				'schema'   => null,
 			),
 		);
@@ -162,6 +172,7 @@ class Contacts {
 			// IMO ships no brand glyph in the icon set, so a neutral chat mark
 			// stands in rather than an unrelated logo.
 			'imo'      => array( '0 0 512 512', 'M256 448c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9c-5.5 9.2-11.1 16.6-15.2 21.6c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c28.7 0 57.6-8.9 81.6-19.3c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9zM128 208a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm96 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm160-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z' ),
+			'company'  => array( '0 0 384 512', 'M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V416c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32v96h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm96 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16z' ),
 			'others'   => array( '0 0 512 512', 'M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z' ),
 		);
 
@@ -185,6 +196,52 @@ class Contacts {
 	}
 
 	/**
+	 * Attempt to infer a contact type when it is missing or unrecognized.
+	 *
+	 * @param string $text    Display text.
+	 * @param array  $contact Raw contact attribute.
+	 * @return string Inferred type slug.
+	 */
+	public static function infer_type( $text, $contact = array() ) {
+		if ( '' === $text ) {
+			return '';
+		}
+
+		$icon     = isset( $contact['icon'] ) && is_array( $contact['icon'] ) ? $contact['icon'] : array();
+		$class    = isset( $icon['class'] ) ? strtolower( (string) $icon['class'] ) : '';
+		$svg      = isset( $icon['svg'] ) ? strtolower( (string) $icon['svg'] ) : '';
+		$icon_str = $class . ' ' . $svg;
+
+		if ( false !== strpos( $icon_str, 'building' ) || false !== strpos( $icon_str, 'briefcase' ) || false !== strpos( $icon_str, 'city' ) ) {
+			return 'company';
+		}
+		if ( false !== strpos( $icon_str, 'envelope' ) || false !== strpos( $icon_str, 'mail' ) ) {
+			return 'email';
+		}
+		if ( false !== strpos( $icon_str, 'phone' ) || false !== strpos( $icon_str, 'mobile' ) ) {
+			return 'phone';
+		}
+		if ( false !== strpos( $icon_str, 'globe' ) || false !== strpos( $icon_str, 'link' ) ) {
+			return 'website';
+		}
+		if ( false !== strpos( $icon_str, 'map' ) || false !== strpos( $icon_str, 'location' ) ) {
+			return 'address';
+		}
+
+		if ( is_email( $text ) ) {
+			return 'email';
+		}
+		if ( preg_match( '#^https?://#i', $text ) ) {
+			return 'website';
+		}
+		if ( preg_match( '/^[+0-9() -]{6,}$/', $text ) && preg_match( '/[0-9]{4,}/', $text ) ) {
+			return 'phone';
+		}
+
+		return 'others';
+	}
+
+	/**
 	 * Resolve one contact entry into everything a renderer needs.
 	 *
 	 * @param array $contact Raw contact attribute ( type, text, icon ).
@@ -201,6 +258,10 @@ class Contacts {
 
 		$type = isset( $contact['type'] ) ? strtolower( trim( (string) $contact['type'] ) ) : '';
 		$text = isset( $contact['text'] ) ? trim( (string) $contact['text'] ) : '';
+
+		if ( ( '' === $type || ! isset( $types[ $type ] ) ) && '' !== $text ) {
+			$type = self::infer_type( $text, $contact );
+		}
 
 		$resolved = array(
 			'type'     => $type,

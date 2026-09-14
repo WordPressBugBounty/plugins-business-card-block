@@ -82,6 +82,11 @@ class VCard {
 
 			$spec = $types[ $type ]['vcard'];
 
+			// Avoid duplicate ORG line if identity['organization'] was already emitted.
+			if ( 'company' === $type && ! empty( $identity['organization'] ) ) {
+				continue;
+			}
+
 			// Messaging identifiers are extension properties; skipping them in
 			// compact mode keeps the QR scannable on cheap phone cameras.
 			$is_extension = ( 0 === strpos( $spec['prop'], 'X-' ) || 'IMPP' === $spec['prop'] );

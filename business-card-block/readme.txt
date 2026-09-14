@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: business card, vcard, qr code, contact card, gutenberg block
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 2.1.4
+Stable tag: 2.1.6
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -12,8 +12,6 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Build a digital business card with a scannable QR code, a downloadable vCard and tap-to-call contact links. No CSS needed.
 
 == Description ==
-
-[**Business Card**](https://bplugins.com/products/business-card-block/) | [**Documentation**](https://bplugins.com/docs/business-card-block/) | [**Pricing**](https://bplugins.com/products/business-card-block/pricing) | [**Support**](https://bplugins.com/support/) | [**Demo**](https://bblockswp.com/demo/business-card-all-demos/)
 
 Your contact details are probably sitting on your site as plain text. Someone who wants to call you has to select the number, copy it, switch apps and paste it. Most people will not bother.
 
@@ -226,6 +224,17 @@ Post your question on the [support forum](https://wordpress.org/support/plugin/b
 [**bBlocks**](https://bblockswp.com) – A blocks collection and page building tool for Gutenberg.
 
 == Changelog ==
+
+= 2.1.6 - 14 September 2026 =
+* Fix - The company field in block settings was not being saved, defaulting to "Tech Crop" for all new cards. The default is removed and the field now respects user input.
+* Fix - Contact rows, particularlyIMO and WeChat, were sometimes shown with an icon even when they had no value. The block now only renders a contact row when there is actual content.
+
+= 2.1.5 - 10 September 2026 =
+* Fix - Downloaded vCard files started with a byte-order mark, which made strict address books refuse to import them — iOS Contacts and Windows Contacts among them. The mark is gone and the character encoding is declared on the download itself.
+* Fix - The QR code Size control had no effect on several card designs, where a built-in size overrode the chosen value. Per-design sizes now act as an upper limit, so the control works on every card.
+* Fix - Contact rows used different markup in the editor preview than on the published page, so spacing and alignment drifted between the two. Both now render the same structure.
+* Fix - Admin styles and scripts could be served from a stale browser cache after an update, because the asset version had stopped tracking the plugin version.
+* Fix - The website exported to the vCard is now a complete URL. A value typed without "https://" was written to the file verbatim, which some address books stored as an unusable link.
 
 = 2.1.4 - 30 August 2026 =
 * New - Added QR code sharing (vCard, URL, custom link) generated on the server as SVG with zero client-side JavaScript overhead.

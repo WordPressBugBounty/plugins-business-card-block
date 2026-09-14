@@ -49,13 +49,26 @@ class Model {
 			? $attributes['contacts']
 			: array();
 
+		$company_raw = self::pick( $attributes, 'company', self::pick( $business_card, 'company' ) );
+		if ( 'Tech Crop' === $company_raw ) {
+			$company_raw = '';
+		}
+		$organization = self::text( $company_raw );
+		if ( '' === $organization ) {
+			$company_contact = Contacts::first( $contacts, 'company' );
+			if ( $company_contact && ! empty( $company_contact['text'] ) ) {
+				$organization = self::text( $company_contact['text'] );
+			}
+		}
+
 		return array(
 			'identity' => array(
 				'name'         => self::text( self::pick( $attributes, 'name' ) ),
 				'title'        => self::text( self::pick( $attributes, 'title' ) ),
 				// Industry blocks put these at top level, the core block nests
-				// them; prefer whichever is actually filled in.
-				'organization' => self::text( self::pick( $attributes, 'company', self::pick( $business_card, 'company' ) ) ),
+				// them; prefer whichever is actually filled in, falling back to
+				// a company contact row if present.
+				'organization' => $organization,
 				'tagline'      => self::text( self::pick( $attributes, 'tagline', self::pick( $business_card, 'tagline' ) ) ),
 				'avatar'       => self::image( $attributes, 'avatar', 'showAvatar' ),
 				'logo'         => self::image( $attributes, 'logo', 'showLogo' ),
