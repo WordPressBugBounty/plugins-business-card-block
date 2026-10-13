@@ -36,12 +36,39 @@ class Init {
     }
 
 
+	/**
+	 * Point a registered block's scripts at the plugin's translation files.
+	 *
+	 * WordPress loads PHP translations for a wordpress.org-hosted plugin by
+	 * itself, but JavaScript has no such fallback: without this call every
+	 * editor and frontend string stays English in every locale, however
+	 * complete the .mo files are.
+	 *
+	 * @param \WP_Block_Type|false $type Return value of register_block_type().
+	 * @return void
+	 */
+	public static function set_script_translations( $type ) {
+		if ( ! $type instanceof \WP_Block_Type ) {
+			return;
+		}
+
+		$handles = array_merge(
+			(array) $type->editor_script_handles,
+			(array) $type->script_handles,
+			(array) $type->view_script_handles
+		);
+
+		foreach ( array_unique( array_filter( $handles ) ) as $handle ) {
+			wp_set_script_translations( $handle, 'business-card-block', BCB_DIR_PATH . 'languages' );
+		}
+	}
+
 	function onInit(){
 	$disabled = get_option( 'bcbDisabledBlocks', [] );
 	if ( ! is_array( $disabled ) ) {
 		$disabled = [];
 	}
-	register_block_type( BCB_DIR_PATH . '/build/blocks/card' );
+	self::set_script_translations( register_block_type( BCB_DIR_PATH . '/build/blocks/card' ) );
 	$this->registeredBlocks[] = 'business/card';
 	if ( function_exists( 'bcbIsPremium' ) && bcbIsPremium() ) {
 		$pro_blocks = [
@@ -72,7 +99,7 @@ class Init {
 			if ( ! is_dir( BCB_DIR_PATH . '/build/blocks/' . $dir ) ) {
 				continue;
 			}
-			register_block_type( BCB_DIR_PATH . '/build/blocks/' . $dir );
+			self::set_script_translations( register_block_type( BCB_DIR_PATH . '/build/blocks/' . $dir ) );
 			$this->registeredBlocks[] = $block_name;
 		}
 	}

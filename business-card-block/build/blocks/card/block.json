@@ -2,7 +2,7 @@
   "apiVersion": 3,
   "name": "business/card",
   "title": "Business Card",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Show your business card in web.",
   "category": "business-cards",
   "keywords": [
@@ -10,7 +10,7 @@
     "card",
     "address"
   ],
-  "textdomain": "business-card",
+  "textdomain": "business-card-block",
   "attributes": {
     "animations": {
       "type": "object",

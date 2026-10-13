@@ -64,6 +64,7 @@ class Enqueue {
 	            $asset['version'],
 	            true
 	        );
+	        wp_set_script_translations( 'bcb-block-chooser', 'business-card-block', BCB_DIR_PATH . 'languages' );
 	        wp_enqueue_style(
 	            'bcb-block-chooser',
 	            BCB_DIR_URL . 'build/admin-block-chooser.css',
@@ -82,6 +83,7 @@ class Enqueue {
         if ('bcb' === $typenow) {
             wp_enqueue_style('bcb-admin-post', BCB_DIR_URL . 'build/admin-post.css', [], BCB_PLUGIN_VERSION);
 			wp_enqueue_script('bcb-admin-post', BCB_DIR_URL . 'build/admin-post.js', [], BCB_PLUGIN_VERSION, true);
+			wp_set_script_translations( 'bcb-admin-post', 'business-card-block', BCB_DIR_PATH . 'languages' );
         }
 
         // Help & Demos dashboard React app. The submenu lives under the `bcb` CPT, so it can be
@@ -105,6 +107,7 @@ class Enqueue {
                 $asset['version'],
                 true
             );
+            wp_set_script_translations( 'bcb-admin-script', 'business-card-block', BCB_DIR_PATH . 'languages' );
         }
     }
   

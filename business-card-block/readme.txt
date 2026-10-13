@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: business card, vcard, qr code, contact card, gutenberg block
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 2.1.6
+Stable tag: 2.1.7
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -224,6 +224,17 @@ Post your question on the [support forum](https://wordpress.org/support/plugin/b
 [**bBlocks**](https://bblockswp.com) – A blocks collection and page building tool for Gutenberg.
 
 == Changelog ==
+
+= 2.1.7 - 13 October 2026 =
+* New - Phone numbers can now be marked as Mobile, Work, Home or Fax, and the downloaded vCard labels them accordingly instead of exporting every number as a mobile.
+* Fix - The plugin can now be translated. Every string in the editor and on the card was registered under a text domain the plugin does not declare, so no translation could ever load, in any language.
+* Fix - Translations are now loaded for all JavaScript. WordPress has no automatic fallback for script translations, and the call that registers them was missing, so translated strings stayed English even where a translation existed.
+* Fix - Translation files are now named for the plugin's text domain. The previous names could never be found by WordPress, however complete the translation was.
+* Fix - Two settings labels in the card block were hard-coded in English and could not be translated at all.
+* Tweak - Fixed the tooling that builds the translation template, which had been writing it under a name and text domain WordPress does not look for.
+* Tweak - The fourteen industry card blocks had been left on an older version number than the plugin itself; all blocks now report the release they ship in.
+* Tweak - Cut roughly 1 MB from every block's editor assets by no longer bundling a code editor the plugin does not use. The download is smaller and the block editor loads less on every page.
+* Tweak - Updated the Freemius SDK to 2.13.4.
 
 = 2.1.6 - 14 September 2026 =
 * Fix - The company field in block settings was not being saved, defaulting to "Tech Crop" for all new cards. The default is removed and the field now respects user input.

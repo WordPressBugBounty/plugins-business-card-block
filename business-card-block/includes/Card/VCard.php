@@ -129,6 +129,14 @@ class VCard {
 		$params = isset( $spec['params'] ) ? $spec['params'] : '';
 		$source = isset( $spec['value'] ) ? $spec['value'] : 'text';
 
+		// A row may override the type's default parameters — a phone marked as
+		// a work line exports TYPE=WORK rather than TYPE=CELL. Contacts::resolve
+		// has already validated the key against this same table.
+		$subtype = isset( $contact['subtype'] ) ? $contact['subtype'] : '';
+		if ( '' !== $subtype && isset( $spec['subtype'][ $subtype ] ) ) {
+			$params = $spec['subtype'][ $subtype ];
+		}
+
 		if ( 'href' === $source ) {
 			$value = isset( $contact['href'] ) ? $contact['href'] : '';
 			if ( '' === $value ) {

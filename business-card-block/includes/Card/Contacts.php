@@ -62,7 +62,18 @@ class Contacts {
 				'scheme'   => 'tel:{tel}',
 				'passthru' => array(),
 				'copyable' => false,
-				'vcard'    => array( 'prop' => 'TEL', 'params' => 'TYPE=CELL' ),
+				// 'params' stays the default so a card saved before the subtype
+				// control existed still exports exactly as it always did.
+				'vcard'    => array(
+					'prop'    => 'TEL',
+					'params'  => 'TYPE=CELL',
+					'subtype' => array(
+						'cell' => 'TYPE=CELL',
+						'work' => 'TYPE=WORK',
+						'home' => 'TYPE=HOME',
+						'fax'  => 'TYPE=FAX',
+					),
+				),
 				'schema'   => 'telephone',
 			),
 			'email'    => array(
@@ -269,6 +280,7 @@ class Contacts {
 			'href'     => '',
 			'copyable' => false,
 			'label'    => '',
+			'subtype'  => self::subtype( $type, $contact ),
 		);
 
 		if ( '' === $text || ! isset( $types[ $type ] ) ) {
@@ -425,6 +437,49 @@ class Contacts {
 	}
 
 	/**
+	 * The validated subtype for one row, e.g. a phone's "work" or "fax".
+	 *
+	 * Anything unrecognised — including the empty value every card saved before
+	 * this control existed carries — resolves to '', which leaves the type's
+	 * default vCard parameters in place.
+	 *
+	 * @param string $type    Contact type slug.
+	 * @param array  $contact Raw contact row.
+	 * @return string Validated subtype key, or ''.
+	 */
+	private static function subtype( $type, $contact ) {
+		$types = self::types();
+
+		if ( ! isset( $types[ $type ]['vcard']['subtype'] ) ) {
+			return '';
+		}
+
+		$key = isset( $contact['subtype'] ) ? strtolower( trim( (string) $contact['subtype'] ) ) : '';
+
+		return isset( $types[ $type ]['vcard']['subtype'][ $key ] ) ? $key : '';
+	}
+
+	/**
+	 * Subtype options per contact type, for the editor's dropdown.
+	 *
+	 * Derived from the same registry the exporter reads, so the control can
+	 * never drift from what the vCard actually emits.
+	 *
+	 * @return array<string, string[]> Type slug => list of subtype keys.
+	 */
+	public static function subtype_table() {
+		$out = array();
+
+		foreach ( self::types() as $slug => $def ) {
+			if ( ! empty( $def['vcard']['subtype'] ) ) {
+				$out[ $slug ] = array_keys( $def['vcard']['subtype'] );
+			}
+		}
+
+		return $out;
+	}
+
+	/**
 	 * Coerce a user-entered website into an absolute http(s) URL.
 	 *
 	 * @param string $text Raw value.
@@ -472,6 +527,11 @@ class Contacts {
 				'passthru' => $def['passthru'],
 				'copyable' => (bool) $def['copyable'],
 				'icon'     => self::icon( $slug ),
+				// Lets the editor offer exactly the subtypes the exporter
+				// honours, instead of a second list that can drift from it.
+				'subtypes' => isset( $def['vcard']['subtype'] )
+					? array_keys( $def['vcard']['subtype'] )
+					: array(),
 			);
 		}
 
