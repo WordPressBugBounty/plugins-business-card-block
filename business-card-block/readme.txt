@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: business card, vcard, qr code, contact card, gutenberg block
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 2.1.7
+Stable tag: 2.1.8
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -224,6 +224,12 @@ Post your question on the [support forum](https://wordpress.org/support/plugin/b
 [**bBlocks**](https://bblockswp.com) – A blocks collection and page building tool for Gutenberg.
 
 == Changelog ==
+
+= 2.1.8 - 8 November 2026 =
+* Fix - The plugin dashboard can now be translated. Every heading, tab, step and button on the Welcome, Getting Started and Blocks screens was hard-coded English and could not be translated into any language.
+* Fix - Block names on the dashboard Blocks screen are now translatable, while still matching the registered block they switch on and off.
+* Tweak - Demo titles, Pro feature descriptions and the pricing button now read from the translation files like the rest of the plugin.
+* Tweak - Updated the Freemius SDK to 2.13.5.
 
 = 2.1.7 - 13 October 2026 =
 * New - Phone numbers can now be marked as Mobile, Work, Home or Fax, and the downloaded vCard labels them accordingly instead of exporting every number as a mobile.
