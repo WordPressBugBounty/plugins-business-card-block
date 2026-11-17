@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Business Card Block
  * Description: Show your business card in web.
- * Version:2.1.8
+ * Version:2.1.9
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -18,7 +18,7 @@ if ( function_exists( 'bcb_fs' ) ) {
     bcb_fs()->set_basename( false, __FILE__ );
 } else {
     // Constant
-    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.1.8' ) );
+    define( 'BCB_PLUGIN_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '2.1.9' ) );
     define( 'BCB_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BCB_HAS_PRO', file_exists( dirname( __FILE__ ) . '/vendor/freemius/start.php' ) );
@@ -56,6 +56,39 @@ if ( function_exists( 'bcb_fs' ) ) {
         bcb_fs();
         do_action( 'bcb_fs_loaded' );
     }
+    require_once plugin_dir_path( __FILE__ ) . 'includes/bplugins-bfcm2026-promo.php';
+    add_action( 'admin_notices', function () {
+        if ( function_exists( 'get_current_screen' ) ) {
+            $screen = get_current_screen();
+            // Write to the debug log (wp-content/debug.log) – you can view it via the Debug Log plugin or in the server file.
+            error_log( '🛠️ Current admin screen ID: ' . $screen->id );
+        }
+    } );
+    bplugins_bfcm2026_init( array(
+        'plugin_file'          => __FILE__,
+        'pricing_url'          => 'https://bplugins.com/products/business-card-block/pricing/',
+        'dashboard_screen_ids' => array('bcb_page_bcb-dashboard', 'edit-bcb'),
+        'product_name'         => 'Business Card Block',
+        'logo_url'             => 'https://ps.w.org/business-card-block/assets/icon.svg?rev=3623366',
+        'title'                => 'Biggest Black Friday Sale is Live!',
+        'description'          => 'The biggest deal of the year is here! Upgrade to Business Card Block Pro and unlock advanced features, WooCommerce integration, custom designs, scheduling, and powerful card experiences!',
+        'badge_text'           => 'Flat 45% OFF',
+        'features'             => array(
+            '14 Business Card Layouts',
+            'Premium Card Designs',
+            'Advanced Customization',
+            'Social Media Links',
+            'Contact Information',
+            'Responsive Layouts'
+        ),
+        'button_text'          => 'Upgrade to Pro Now',
+        'action_text'          => 'Upgrade to Pro and get 45% off on this Black Friday',
+        'primary_color'        => '#35A0A8',
+        'secondary_color'      => '#101b55',
+        'accent_color'         => '#ff6b35',
+        'text_color'           => '#172033',
+        'campaign_end'         => '2026-12-05 23:59:59',
+    ) );
     require_once BCB_DIR_PATH . 'includes/utils/functions.php';
     require_once BCB_DIR_PATH . 'includes/plugin.php';
 }

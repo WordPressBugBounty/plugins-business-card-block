@@ -1,10 +1,10 @@
 === Business Card Block – present your team and contact info in style ===
-Contributors: bplugins, abuhayat, asadsuzan, freemius
+Contributors: bplugins, abuhayat, asadsuzan, freemius,asaduzzamansuzan
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: business card, vcard, qr code, contact card, gutenberg block
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 2.1.8
+Stable tag: 2.1.9
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
